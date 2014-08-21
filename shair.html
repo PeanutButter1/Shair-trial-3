@@ -1,0 +1,583 @@
+<!DOCTYPE html> 
+	<html>
+		<head>
+			<title>Coolest Project Evvvaaa!!</title>
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="stylesheet" href="jquery.mobile-1.4.3.min.css"/>
+			<script src="jquery-1.11.1.min.js"></script>
+			<script src="jquery.mobile-1.4.3.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+			<script src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
+			<script src="http://cloud.github.com/downloads/processing-js/processing-js/processing-1.4.1.min.js"></script>			
+			<script>	
+			var myDataRef = new Firebase('https://shair.firebaseio.com/');
+	
+			function Rating(id){
+				var name= $('#name'+id+'').val();
+				var comment= $('#comment'+id+'').val();
+				console.log(id);
+				myDataRef.push({name: name, comment:comment, id:id, datatype:"comment"});	
+								
+			}
+
+			myDataRef.on('value', showItems);
+			
+			function showItems(snapshot){
+				var idk=snapshot.val();
+				$("#cool4").empty();
+				$("#cool3").empty();
+				$("#cool2").empty();
+				$("#cool1").empty();
+				$("#cool").empty();
+				$("#cool5").empty();
+				for(var identifier in idk){
+					$("#cool"+idk[identifier].id+"").append('<li>' + idk[identifier].name +" : "+idk[identifier].comment +"</li>");
+				}
+				
+			}
+			function Videos(){
+				var url=$("#theweb").val();
+				myDataRef.push({url:url, datatype:"url"});
+			}
+			
+			myDataRef.on('value', addVideo);
+			
+			function addVideo(snapshot){
+				var ideek=snapshot.val();
+				$("#vid").empty();
+				for (var identifier in ideek){
+					if (ideek[identifier].datatype=="url"){
+						$("#vid").append('<a>'+ideek[identifier].url+'</a>');
+					}
+				}
+			}
+			function hola(){
+				$("#clicked").show();
+				$("#fillItOut").show();
+			}
+			function Goto(){
+				document.location.href=$("#donation").val();
+			}
+			var currentTime = new Date();
+			var month = currentTime.getMonth() + 1;
+			var day = currentTime.getDate();
+			var year = currentTime.getFullYear();
+			function theTip(){
+				var tips=["When using conditioner, do not put it on your scalp or else it will get oily.", "Don't dry wet hair with a towel. It will cause split ends because your hair is most prone to damage when wet. Instead, use paper towel.","If you don't have dry shampoo, you can always use baby powder.","Don't look at the mirror when you learn to braid because it will confuse you.","Use chamomile tea or lemon juice to lighten up your hair.", "If you want your colored hair to last longer, put a drop of the dye in your conditioner.", "Buy a detangler brush; it's really works. I recommend the tangle teezer.", "Brushing your hair 100x does not make it healthy-- just a myth.","If your hair is static, use dryer sheets to smooth it out.", "To prevent split ends, braid your hair when you sleep to prevent it from tangling.", "If you have slippery, straight hair, spray the bobby pins with hairspray to keep it on your head."];
+				if (day<=3 ){
+					$("#tippy").empty();
+					$("#tippy").append(tips[0]);
+				}
+				if (day<=6 && day>3 ){
+					$("#tippy").empty();
+					$("#tippy").append(tips[1]);
+				}
+				if (day<=9 && day>6){
+					$("#tippy").empty();
+					$("#tippy").append(tips[2]);
+				}
+				if (day<=12 && day>9){
+					$("#tippy").empty();
+					$("#tippy").append(tips[3]);
+				}
+				if (day<=15 && day>12){
+					$("#tippy").empty();
+					$("#tippy").append(tips[4]);
+				}
+				if (day<=18 && day>15){
+					$("#tippy").empty();
+					$("#tippy").append(tips[5]);
+				}
+				if (day<=21 && day>18){
+					$("#tippy").empty();
+					$("#tippy").append(tips[6]);
+				}
+				if (day<=24 && day>21){
+					$("#tippy").empty();
+					$("#tippy").append(tips[7]);
+				}
+				if (day<=27 && day>24){
+					$("#tippy").empty();
+					$("#tippy").append(tips[8]);
+				}
+				if (day<=30&& day>27){
+					$("#tippy").empty();
+					$("#tippy").append(tips[9]);
+				}
+				if (day==31){
+					$("#tippy").empty();
+					$("#tippy").append(tips[10]);
+				}
+				
+			}
+			function dateFunction(){
+				$(".date").append(month + "/" + day + "/" + year);
+			}
+
+		
+			
+			</script>
+
+			<script type="application/processing" data-processing-target="mycanvas"> 
+
+			void setup() {
+
+			size(500, 500);
+			background (0,0,0);
+		  
+		   // @pjs preload must be used to preload the image 
+
+			/* @pjs preload="face.png"; */
+
+			PImage b;
+
+		  
+			 b = loadImage("face.png");
+			
+			image(b, 0, 0, width,height);
+			
+			fill (0,0,0);
+			rect(0,0,50,50);
+			
+			fill (120,50,10);
+			rect (0,50,50,50);
+			
+			fill (180,180,0);
+			rect(0,100,50,50);
+			
+			fill (250, 0, 0);
+			rect(0,150, 50,50);
+			
+			fill (0,250,0);
+			rect(0,200,50,50);
+			
+			fill(0,0,250);
+			rect(0,250,50,50);
+			
+			fill(255,255,255);
+			rect(0,250,50,50);
+
+			noStroke();
+		}
+
+		var r ;
+		var g;
+		var b;
+
+		r = 0;
+		g = 0;
+		b = 0;
+
+
+
+		void draw() {
+
+
+		if (mousePressed == true) {
+			if ((mouseX > 0 && mouseX < 50)&& (mouseY > 0 && mouseY < 50)){
+			r= 0;
+			g = 0;
+			b = 0;
+			}
+			}
+			
+		if (mousePressed == true) {
+			if ((mouseX>0 && mouseX < 50) && (mouseY> 50 && mouseY <100)) {
+			r = 120;
+			g =50;
+			b = 10;
+		   
+		 }
+
+		 }
+		 
+		 if (mousePressed == true) {
+			if ((mouseX>0 && mouseX < 50) && (mouseY > 100 && mouseY < 150)) {
+			r = 180;
+			g= 180;
+			b = 0;
+			}
+			}
+
+			if (mousePressed == true) {
+				if((mouseX>0 && mouseX <50) && (mouseY > 150 && mouseY < 200)){
+				r=250;
+				g=0;
+				b=0;
+				}
+				}
+				
+			
+			if (mousePressed == true) {
+				if((mouseX>0 && mouseX <50) && (mouseY > 200 && mouseY < 250)){
+				r=0;
+				g=250;
+				b=0;
+				}
+				}
+			
+			
+			if (mousePressed == true) {
+				if((mouseX>0 && mouseX <50) && (mouseY > 250 && mouseY < 300)){
+				r=0;
+				g=0;
+				b=250;
+				}
+				}
+			if (mousePressed == true) {
+				if((mouseX>0 && mouseX <50) && (mouseY > 300 && mouseY < 350)){
+				r=255;
+				g=255;
+				b=255;
+				}
+				}
+		 
+		 
+		if (mousePressed == true) {
+		  
+		  fill(r,g,b);
+		  ellipse(mouseX, mouseY, 5, 5);
+		  
+
+		 }
+		 }
+
+
+
+
+</script>
+			
+				<style type="text/CSS">
+				p{
+					font-style:bold;
+					font-size: 35px;
+					text-align: center;
+					font-family: "Pacifico";
+				}
+				
+				</style>
+				
+				
+				
+				
+				
+              
+    <style>
+    
+                @font-face {
+                font-family: 'Pacifico';
+                font-style: normal;
+                font-weight: normal;
+                src: local('Pacifico'), url('http://themes.googleusercontent.com/font?kit=fKnfV28XkldRW297cFLeqfesZW2xOQ-xsNqO47m55DA') format('truetype');
+            }
+         
+
+            #button {
+				text-align: center;
+                display: inline-block;
+                margin-top: 5%;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                border-radius: 4px;
+                -webkit-box-shadow:    0 4px 0 #c5376d, 0 7px 10px rgba(0, 0, 0, .35);
+                -moz-box-shadow: 0 4px 0 #c5376d, 0 15px 20px rgba(0, 0, 0, .35);
+                box-shadow: 0 4px 0 #c5376d, 0 15px 20px rgba(0, 0, 0, .35);
+                -webkit-transition: -webkit-box-shadow .1s ease-in-out;
+                -moz-transition: -moz-box-shadow .1s ease-in-out;
+                -o-transition: -o-box-shadow .1s ease-in-out;
+                transition: box-shadow .1s ease-in-out;
+                font-size: 15px;
+                color: #fff;
+            }
+
+            #button span {
+                display: inline-block;
+                padding: 10px 15px;
+                background-color: #ec528d;
+                background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(hsla(338, 90%, 80%, .8)), to(hsla(338, 90%, 70%, .2)));
+                background-image: -webkit-linear-gradient(hsla(338, 90%, 80%, .8), hsla(338, 90%, 70%, .2));
+                background-image: -moz-linear-gradient(hsla(338, 90%, 80%, .8), hsla(338, 90%, 70%, .2));
+                background-image: -o-linear-gradient(hsla(338, 90%, 80%, .8), hsla(338, 90%, 70%, .2));
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                border-radius: 4px;
+                -webkit-box-shadow: inset 0 -1px 1px rgba(255, 255, 255, .15);
+                -moz-box-shadow: inset 0 -1px 1px rgba(255, 255, 255, .15);
+                box-shadow: inset 0 -1px 1px rgba(255, 255, 255, .15);
+                font-family: 'Pacifico', Arial, sans-serif;
+                line-height: 1;
+                text-shadow: 0 -1px 1px rgba(175, 49, 95, .7);
+                -webkit-transition: background-color .2s ease-in-out, -webkit-transform .1s ease-in-out;
+                -moz-transition: background-color .2s ease-in-out, -moz-transform .1s ease-in-out;
+                -o-transition: background-color .2s ease-in-out, -o-transform .1s ease-in-out;
+                transition: background-color .2s ease-in-out, transform .1s ease-in-out;
+            }
+
+            #button:hover span {
+                background-color: #ec6a9c;
+                text-shadow: 0 -1px 1px rgba(175, 49, 95, .9), 0 0 5px rgba(255, 255, 255, .8);
+            }
+
+            #button:active, #button:focus {
+                -webkit-box-shadow:    0 8px 0 #c5376d, 0 12px 10px rgba(0, 0, 0, .3);
+                -moz-box-shadow: 0 8px 0 #c5376d, 0 12px 10px rgba(0, 0, 0, .3);
+                box-shadow:    0 8px 0 #c5376d, 0 12px 10px rgba(0, 0, 0, .3);
+            }
+
+            #button:active span {
+                -webkit-transform: translate(0, 4px);
+                -moz-transform: translate(0, 4px);
+                -o-transform: translate(0, 4px);
+                transform: translate(0, 4px);
+            }
+                
+    
+    </style>
+                
+    <script>
+        document.getElementById('button').onclick = (function() {
+            document.getElementsById('audio')[0].play();
+            document.getElementsByTagName('span')[0].innerHTML = 'Hello!';
+            return false;
+        });*/
+    
+    </script>
+	</head>
+		<body onload="dateFunction()">
+			<div data-role="page" id="home">
+				<img src="C:\Users\gwc43\Downloads\logo_914444_web.jpg" style="background-color:pink; height=120px; width=55%; margin-left:auto; margin-right:auto">
+				<img src="http://1.bp.blogspot.com/-q08SIs2oU3w/T6jUI7bkK0I/AAAAAAAACMg/1ypfUBm367k/s1600/tumblr_lwh9t9XIRl1qgx1e3o1_500.jpg" style="width:100%"/> 
+			<div data-role="navbar">
+				<ul>
+					<li><a href= "#donate">Hair Donation</li></a>
+					<li><a href= "#LearnIt">How-To</li></a>
+				</ul>
+			</div>
+			<div data-role="navbar">
+				<ul>
+					<li><a href= "#tip" data-icon="calendar"  onclick="theTip()">Tip of the Day</li></a>
+					<li><a href= "#hair" data-icon="calendar">Hair of the Day</li></a>
+				</ul>
+			</div>
+			<div data-role="navbar">
+				<ul>
+					<li><a href= "#tryIt" data-icon="heart">Try the hair out</li></a>
+				</ul>
+			</div>
+			<div data-role="navbar">
+				<ul>
+					<li><a href= "#yourOwn">Post Youtube Video</li></a>
+					<li><a href= "#videos">Them Videos</li></a>
+				</ul>
+			</div>
+		</div>		
+	<div data-role="page" id="donate">
+			<div data-role="header" style="background-color:pink; color:white; text-align: center; font-family: Georgia">
+				<h1 style= "color:black;font-family: Halencia">Donate Hair</h1>
+				<a href="#home" data-role= "button" data-icon="home" data-iconpos="notext" ></a>
+			</div>
+			<div role="main" class="ui-content">
+				<p><img src="http://www.momtrends.com/wp-content/uploads/2013/09/bl_fb_infographic_843x403_061413.jpg" width=100%></p>  
+				<p><img src="http://www.macmillan.org.uk/Images/Cancerinfo/Cancertreatment/treatmentdecisions_hairloss_2014.jpg" width=100%></p>
+				<p id="why"><a href="" onclick="hola()">WHY?</a></p>
+			<div id="clicked" style="display:none;">
+				<h5 style= "color:red";"font-family:Halencia";"font-size:15px" >	Not everyone's fortunate with luxurious locks of hair due to hair loss/chemotherapy. By donating hair, you are helping them with self confidence. If you'd like to learn more about donating your hair to those in need, select an organization that you are interested in below, and read all about it! </h5>
+			</div>
+			<div id="fillItOut" style="display:none";>	
+				<select name="select-choice-a" id="donation">
+					<option>Organizations</option>
+					<option value="http://www.locksoflove.org/donate.html">Locks of Love</option>
+					<option value="http://pantene.com/en-US/brandexperience/prepare-your-hair">Pantene</option>
+					<option value="http://www.childrenwithhairloss.us/donate-your-hair/">Children With Hair Loss</option>
+					<option value="http://www.wigs4kids.org/hair_donation.html">Wigs4kids</option>
+					<option value="http://angelhairfoundation.org/">Angel Hair Foundation</option>
+					<input type="button" value="Learn More" data-theme="a" onClick="Goto()"/>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div data-role="page" id="LearnIt">
+		<div data-role="header" style="background-color:pink; color:white; text-align: center; font-family: Georgia">
+			<a href="#home" data-role= "button" data-icon="home" data-iconpos="notext" ></a>
+			<h1 style= "color:black;font-family: Halencia">How-To</h1>
+		</div>
+		<div data-role="collapsible-set">
+			<div data-role="collapsible" data-collapsed="true">
+				<h2>Learn the Basics</h2>
+			<div data-role="collapsible">
+				<h2>Braids</h2>
+				<h4><a href=#newPage>Simple Three Strand Braid</a></h4>
+				<iframe width="300" height="169" src="http://www.youtube.com/embed/_GwFGqN3PNE" frameborder="0" allowfullscreen></iframe>
+				<h4><a href=#newPage1>Dutch Braid</h4></a>
+				<iframe width="300" height="169" src="http://www.youtube.com/embed/G7v-ny5Nkgk" frameborder="0" allowfullscreen></iframe>
+				<h4><a href=#newPage2>Four Strand Braid</h4></a>
+				<iframe width="300" height="169" src="http://www.youtube.com/embed/jv_S7mlC0us" frameborder="0" allowfullscreen></iframe>
+				<h4><a href=#newPage3>French Braid</h4></a>
+				<iframe width="300" height="169" src="http://www.youtube.com/embed/ujS0VNOXeVg" frameborder="0" allowfullscreen></iframe>
+				
+			</div>		
+		</div>
+			<div data-role="collapsible">
+				<h2>Apply the Basics</h2>
+				<h4><a href=#newPage5>Waterfall Braid</h4></a>
+				<iframe width="300" height="169" src="http://www.youtube.com/embed/Y90s6neUKEY" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div>
+
+	</div>		
+	<div data-role="page" id="tip">
+		<div data-role="header" style="background-color:pink; color:white; text-align: center; font-family: Georgia">
+			<h1 style= "color:black; font-family: Halencia">Tip of the Day</h1>
+			<a href="#home" data-role= "button" data-icon="home" data-iconpos="notext" ></a>
+		</div>
+		<div role="main" class="ui-content">
+			<h3 class="date"></h3>
+			<h2 id="tippy" style="color:green; font-size:25px"></h2>
+			<img src="http://media.pantene.co.uk/en-GB/NewPublishingImages/03%20Product%20Detail%20Normal-Thick/AP_COND_400_NORM_RP.png" style="background-color:pink" height="200px" width="40%">
+            <h2  style="color:black; font-size:15px; font-family:comic-sans"><a href="http://pantene.com/en-us?utm_source=google&utm_medium=cpc&utm_term=pantene&utm_campaign=Pantene_Search_Brand+Awareness&utm_content=smPyNKFgg_dc|pcrid|50994999275|pkw|pantene|pmt|e">Pantene&#174;</a> suggests: "It's much easier to treat hair before it's damaged, versus treating damaged hair. Unfortunately once the cuticle is significantly damaged, it cannot be 100% repaired. This is a case where an ounce of prevention is worth a pound of cure, and your best weapon is conditioner."</h2>
+          
+		</div>
+	</div>
+	<div data-role="page" id="tryIt">
+		<div data-role="header" style="background-color:pink;  text-align: center; font-family: Georgia">
+			<a href="#home" data-role= "button" data-icon="home" data-iconpos="notext" ></a>
+			<h1 style= "color:black;font-family: Halencia">Test Hair Style</h1>
+		</div>
+		<div role="main" class="ui-content">
+			<canvas id="mycanvas"></canvas>	
+		</div>
+	</div>	
+	<div data-role="page" id="hair">
+		    <div data-role="header" style=" background-color:white;color:aquamarine; text-align: center; font-family: Georgia">
+            <a href="#home" data-role= "button" data-icon="home" data-iconpos="notext" ></a>
+            
+            <h1 style= "color:aquamarine;font-family: Courier New; font-size: 15px;">Hair of the Day</h1>
+            <img src="http://www.justbebexo.com/wp-content/uploads/2014/03/tumblr_mermaid_braid.jpg" alt="Braid">
+        </div>
+        
+        <h2 style="color:pink; font-family: Courier New; font-size: 30px;">Find out how to get this hot hair look!</h2>
+        <a href="https://www.youtube.com/watch?v=lRmPcLyl97Y" id="button"><span>YouTube Tutorial</span></a>
+        <a href="#mermaidtutorial" id="button" style="color:aquamarine"><span>Not into vids?</span></a>
+        <a href="http://www.wikihow.com/Make-a-Mermaid-Tail-Side-Braid" id="button"><span>Want more words?</span></a>   
+        <p style="color:#C5539F;font-size:15px">Get the perfect beach look in a matter of minutes! The mermaid braid gives your hair a hot new look for the summer. To cute-en it up a little more...add some <a style="color:#DC249F" href="#flowers">flowers!</a></p>
+		</div>
+		    <div data-role="page" id ="flowers">
+       
+        <a href="#home" data-role= "button" data-icon="home" data-iconpos="notext" ></a><a href="#hair" data-role= "button" data-icon="back" data-iconpos="notext" ></a>
+        <img src="http://www.instabraid.com/wp-content/uploads/2013/06/Screen-Shot-2013-06-25-at-3.21.19-PM.png" width="100%" alt="flowers" style="color:pink">
+
+   </div>
+    
+    
+        <div data-role="page" id="mermaidtutorial">
+       
+        <a href="#home" data-role= "button" data-icon="home" data-iconpos="notext" ></a><a href="#hair" data-role= "button" data-icon="back" data-iconpos="notext" ></a>
+
+
+
+        <h1 style="color:pink">Here's a step-by-step tutorial pic!</h1>
+        <img src="http://media-cache-ak0.pinimg.com/736x/a9/67/a4/a967a4ff8a34fce9ffcc3b7c7d3d4edc.jpg" width="100%" alt="merb">
+
+    
+
+        
+    </div> 
+	<div data-role="page" id="newPage">
+		<a href="#home" data-role= "button" data-icon="home" data-iconpos="notext" ></a>
+		<a href="#LearnIt" data-role= "button" data-icon="back" data-iconpos="notext" ></a>
+		<div data-role="main" class="ui-content">
+			Name:<input type=text id="name4"/>
+			Comment: <input type=text id="comment4"/>
+		</div>
+		<h3>Comment</h3>
+		<ul>	
+			<li id="cool4"></li>
+		</ul>
+		<input type="button" value="Submit" onClick="Rating(4)">
+		</div>		
+	<div data-role="page" id="newPage1">
+		<a href="#home" data-role= "button" data-icon="home" data-iconpos="notext" ></a>
+		<a href="#LearnIt" data-role= "button" data-icon="back" data-iconpos="notext" ></a>
+		<div data-role="main" class="ui-content">
+			Name:<input type=text id="name3"/>
+			Comment: <input type=text id="comment3"/>
+		</div>
+		<h3>Comment</h3>
+		<ul>	
+			<li id="cool3"></li>
+		</ul>
+		<input type="button" value="Submit" onClick="Rating('3')">
+		</div>
+	<div data-role="page" id="newPage2">
+		<a href="#home" data-role= "button" data-icon="home" data-iconpos="notext" ></a>
+		<a href="#LearnIt" data-role= "button" data-icon="back" data-iconpos="notext" ></a>
+		<div data-role="main" class="ui-content">
+			Name:<input type=text id="name2"/>
+			Comment: <input type=text id="comment2"/>
+		</div>
+		<h3>Comment</h3>
+		<ul>	
+			<li id="cool2"></li>
+		</ul>
+		<input type="button" value="Submit" onClick="Rating('2')">
+		</div>	
+	<div data-role="page" id="newPage3">
+		<a href="#home" data-role= "button" data-icon="home" data-iconpos="notext" ></a>
+		<a href="#LearnIt" data-role= "button" data-icon="back" data-iconpos="notext" ></a>
+		<div data-role="main" class="ui-content">
+			Name:<input type=text id="name1"/>
+			Comment: <input type=text id="comment1"/>
+		</div>
+		<h3>Comment</h3>
+		<ul>	
+			<li id="cool1"></li>
+		</ul>
+		<input type="button" value="Submit" onClick="Rating('1')">
+		</div>
+	<div data-role="page" id="newPage5">
+		<a href="#home" data-role= "button" data-icon="home" data-iconpos="notext" ></a>
+		<a href="#LearnIt" data-role= "button" data-icon="back" data-iconpos="notext" ></a>
+		<div data-role="main" class="ui-content">
+			Name:<input type=text id="name5"/>
+			Comment: <input type=text id="comment5"/>
+		</div>
+		<h3>Comment</h3>
+		<ul>	
+			<li id="cool5"></li>
+		</ul>
+		<input type="button" value="Submit" onClick="Rating('5')">
+		</div>
+	<div data-role="page" id="yourOwn">
+		<div data-role="header" style="background-color:pink;  text-align: center; font-family: Georgia">
+			<a href="#home" data-role= "button" data-icon="home" data-iconpos="notext" ></a>
+			<h1 style= "color:black;font-family: Halencia">Post YouTube Video</h1>
+		</div>
+		<div role="main" class="ui-content">
+			<h2 style="color:green">You can post your own video or any videos you find helpful!</h2>
+			<h1 style="color:yellow; text-align:center">HERE'S HOW<h1>
+			<h2 style="color:aquamarine">1. Click share on YouTube </h2>
+			<h2 style="color:aquamarine">2. Click embed</h2>
+			<h2 style="color:aquamarine">3. Change video size to "custom size" and set it to 300 x 169</h2>
+			<h2 style="color:aquamarine">4. Copy the link and add "http:" right before the two slashes</h2>
+			Paste It Here!!:<input type=text id="theweb" />
+			
+			<a href=#videos><input type="button" value="Submit"  onclick="Videos()"/></a>
+			
+		</div>
+	</div>	
+	<div data-role="page" id="videos" >
+		<div data-role="header" style="background-color:pink;  text-align: center; font-family: Georgia">
+			<a href="#home" data-role= "button" data-icon="home" data-iconpos="notext" ></a>
+			<a href="#yourOwn" data-role= "button" data-icon="back" data-iconpos="notext" ></a>
+			<h1 style= "color:black;font-family: Halencia">Video Oasis</h1>
+		</div>
+		<div role="main" class="ui-content" >
+		<ul>
+			<a id="vid">
+			</a>
+		</ul>
+		</div>
+	</div>	
+	
+</body>
+</html>
